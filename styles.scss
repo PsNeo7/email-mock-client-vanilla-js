@@ -1,0 +1,32 @@
+body{
+    width: 100%;
+}
+
+.parent-container{
+    display: flex;
+    width: 100%;
+
+    ul{
+        list-style: none;
+        padding:0;
+        li{
+            margin:10px;
+            cursor: pointer;
+            transition: all ease 200ms;
+            &:hover{
+                opacity: 0.8;
+            }
+        }
+    }
+
+    .inbox-type{
+        background-color: gray;
+    }
+    .inbox-list{
+        background-color: rgb(197, 196, 196);
+    }
+    .email-desc{
+        background-color: black;
+        color: white;
+    }
+}
