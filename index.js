@@ -45,7 +45,8 @@ let screenState = {
 
 function getLocalState() {
     if (!localStorage.getItem('state')) {
-        localStorage.setItem('state', JSON.stringify([]))
+        localStorage.setItem('state', JSON.stringify(screenState))
+        // console.log(localStorage.getItem('state'), "getstate");
     }
     return JSON.parse(localStorage.getItem('state'))
 }
