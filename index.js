@@ -108,6 +108,7 @@ const renderinboxTypeUl = () => {
         newLi.dataset.typeIndex = index
         inboxTypeUl.appendChild(newLi)
     });
+    setLocalState()
 }
 
 const createRenderinboxTypeUlInnerHTML = (name, index) => {
@@ -129,6 +130,7 @@ const renderInboxListUl = (typeIndex) => {
         newLI.dataset.emailIndex = index
         inboxListUl.append(newLI)
     });
+    setLocalState()
 }
 
 const renderEmail = (emailIndex) => {
@@ -137,10 +139,11 @@ const renderEmail = (emailIndex) => {
     let currentEmail = screenState.typeList[screenState.typeIndex].emailList[emailIndex]
     if (currentEmail === undefined) return
     currentEmail.status = "Read"
-    emailDesc.innerHTML = createEmailTemplate(currentEmail.subject, currentEmail.content, currentEmail.content.folder)
+    emailDesc.innerHTML = createEmailTemplate(currentEmail)
+    setLocalState()
 }
 
-const createEmailTemplate = (subject, content, folder) => {
+const createEmailTemplate = (currentEmail) => {
     let options = ""
     let optionsList = []
 
@@ -156,7 +159,7 @@ const createEmailTemplate = (subject, content, folder) => {
         newOption.innerText = option
         newOption.value = option
         newOption.dataset.type = "folder-change"
-        if (folder === option) {
+        if (currentEmail.folder === option) {
             newOption.select = true
         }
         let tmp = document.createElement("div");
@@ -165,8 +168,8 @@ const createEmailTemplate = (subject, content, folder) => {
         options += tmp.innerHTML
     });
     // console.log(options, "options generated");
-    return `<p><b>Subject: ${subject}</b></p>
-    <p>${content}</p>
+    return `<p><b>Subject: ${currentEmail.subject}</b></p>
+    <p>${currentEmail.content}</p>
     <label for="folder">Choose a different folder:</label>
     <select onchange="handleFolderChange()" id="folder-selector">
         ${options}
@@ -176,8 +179,8 @@ const createEmailTemplate = (subject, content, folder) => {
 const render = () => {
     setLocalState()
     renderinboxTypeUl()
-    renderInboxListUl(0)
-    renderEmail(0)
+    renderInboxListUl(screenState.typeIndex)
+    renderEmail(screenState.emailIndex)
 }
 if (getLocalState() != undefined) {
     screenState = getLocalState()
