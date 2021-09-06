@@ -151,21 +151,24 @@ const createEmailTemplate = (currentEmail) => {
         optionsList.push(type.name)
     });
 
-    newOption = document.createElement("LABLE")
+    // newOption = document.createElement("LABLE")
 
 
     optionsList.forEach(option => {
-        newOption = document.createElement("OPTION")
-        newOption.innerText = option
-        newOption.value = option
-        newOption.dataset.type = "folder-change"
+        // newOption = document.createElement("OPTION")
+        // let newOption = option
+        // newOption.value = option
+        // newOption.dataset.type = "folder-change"
         if (currentEmail.folder === option) {
-            newOption.select = true
+            // newOption.select = true
+            newOptionHTML = `<option selected="true" value=${option}>${option}</option>`
+        } else {
+            newOptionHTML = `<option value=${option}>${option}</option>`
         }
-        let tmp = document.createElement("div");
-        tmp.appendChild(newOption);
+        // let tmp = document.createElement("div");
+        // tmp.appendChild(newOption);
         // console.log(newOption);
-        options += tmp.innerHTML
+        options += newOptionHTML
     });
     // console.log(options, "options generated");
     return `<p><b>Subject: ${currentEmail.subject}</b></p>
