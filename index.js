@@ -151,34 +151,24 @@ const createEmailTemplate = (currentEmail) => {
         optionsList.push(type.name)
     });
 
-    newOption = document.createElement("LABLE")
+    // newOption = document.createElement("LABLE")
 
 
-    optionsList.forEach((option, index) => {
-        newOption = document.createElement("OPTION")
-        newOption.innerText = option
-        newOption.value = option
-        newOption.dataset.type = "folder-change"
+    optionsList.forEach(option => {
+        // newOption = document.createElement("OPTION")
+        // let newOption = option
+        // newOption.value = option
+        // newOption.dataset.type = "folder-change"
         if (currentEmail.folder === option) {
-            newOption.selected = true
-            // newOption.innerHTML = `<option value=${option} data-type="folder-change" selected="true">${option}</option>`
-            let tmp = document.createElement("div");
-            tmp.appendChild(newOption);
-            console.log(newOption, "newoption");
-            options += tmp.innerHTML
-            optionsList.splice(index, 1)
+            // newOption.select = true
+            newOptionHTML = `<option selected="true" value=${option}>${option}</option>`
+        } else {
+            newOptionHTML = `<option value=${option}>${option}</option>`
         }
-    });
-
-    optionsList.forEach((option) => {
-        newOption = document.createElement("OPTION")
-        newOption.innerText = option
-        newOption.value = option
-        newOption.dataset.type = "folder-change"
-        let tmp = document.createElement("div");
-        tmp.appendChild(newOption);
-        console.log(newOption, "newoption");
-        options += tmp.innerHTML
+        // let tmp = document.createElement("div");
+        // tmp.appendChild(newOption);
+        // console.log(newOption);
+        options += newOptionHTML
     });
 
 
